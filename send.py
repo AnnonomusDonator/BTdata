@@ -1,7 +1,4 @@
-import sys
-import requests
-from bitcoin import *
-import json
+
 
 if(len(sys.argv) > 0):
     my_key1 = "c89e4494ddbca67b4d8eb6125de7def975aee12e4dcc8ffe19c98ef2c5dc03fa"
