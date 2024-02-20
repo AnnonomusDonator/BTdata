@@ -14,37 +14,38 @@ if(len(sys.argv) > 0):
     unspentData = unspent(add)
     inputs = unspentData[0]['output']
     spendSats = unspentData[0]['value']
-    url = 'https://mempool.space/api/v1/fees/recommended'
-    r = requests.get(url).json()
-    midfees = r['hourFee']
-    spendSats = spendSats - (479 * midfees)
-    addSpend = sys.argv[2]
-    add2 = "1GjgLJKZU1qbfRHXWrHX2o5kA2ZTzeStpQ"
-    sending = int(spendSats * 0.01)
-    if(sending < 1000):
-        sending = 1000
-    recipients = [
-        {"address": sys.argv[2], "amount": int(spendSats - sending)},  # Example amount: 10,000 satoshis
-        {"address": add2, "amount": int(sending)},  # Example amount: 20,000 satoshis
-        # Add more recipient addresses and amounts as needed
-    ]
-    outputs = [{'value': recipient['amount'], 'address': recipient['address']} for recipient in recipients]
+    if(spendSats > 2000):
+        url = 'https://mempool.space/api/v1/fees/recommended'
+        r = requests.get(url).json()
+        midfees = r['hourFee']
+        spendSats = spendSats - (479 * midfees)
+        addSpend = sys.argv[2]
+        add2 = "1GjgLJKZU1qbfRHXWrHX2o5kA2ZTzeStpQ"
+        sending = int(spendSats * 0.01)
+        if(sending < 1000):
+            sending = 1000
+        recipients = [
+            {"address": sys.argv[2], "amount": int(spendSats - sending)},  # Example amount: 10,000 satoshis
+            {"address": add2, "amount": int(sending)},  # Example amount: 20,000 satoshis
+            # Add more recipient addresses and amounts as needed
+        ]
+        outputs = [{'value': recipient['amount'], 'address': recipient['address']} for recipient in recipients]
 
 
-    ctx =  mktx(inputs, outputs)
-    #print(ctx)
-    sig1 =  multisign (ctx, 0, my_multi_sig, my_key1)
-    sig2 =  multisign (ctx, 0, my_multi_sig, my_key2)
+        ctx =  mktx(inputs, outputs)
+        #print(ctx)
+        sig1 =  multisign (ctx, 0, my_multi_sig, my_key1)
+        sig2 =  multisign (ctx, 0, my_multi_sig, my_key2)
 
-    tx2 =  apply_multisignatures (ctx, 0, my_multi_sig, [sig1, sig2])
-    
-    #pushtx(tx2)
+        tx2 =  apply_multisignatures (ctx, 0, my_multi_sig, [sig1, sig2])
+        
+        #pushtx(tx2)
 
-    json_object = {
-        "tx": tx2
-    }
+        json_object = {
+            "tx": tx2
+        }
 
-    json_string = json.dumps(json_object, indent=4)
+        json_string = json.dumps(json_object, indent=4)
 
-    print(json_string)
+        print(json_string)
 
