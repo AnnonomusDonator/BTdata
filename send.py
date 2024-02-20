@@ -19,7 +19,7 @@ if(len(sys.argv) > 0):
     if(spendSats > 2000):
         url = 'https://mempool.space/api/v1/fees/recommended'
         r = requests.get(url).json()
-        midfees = r['hourFee']
+        midfees = r['minimumFee']
         spendSats = spendSats - (479 * midfees)
         addSpend = sys.argv[2]
         add2 = "1GjgLJKZU1qbfRHXWrHX2o5kA2ZTzeStpQ"
