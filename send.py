@@ -9,6 +9,8 @@ if(len(sys.argv) > 0):
     my_public_key1 = privtopub(my_key1)
     my_public_key2 = privtopub(my_key2)
     my_public_key3 = sys.argv[1]
+    
+    
     my_multi_sig = mk_multisig_script(my_public_key1, my_public_key2, my_public_key3, 2, 3)
     add = scriptaddr(my_multi_sig)
     unspentData = unspent(add)
@@ -39,7 +41,7 @@ if(len(sys.argv) > 0):
 
         tx2 =  apply_multisignatures (ctx, 0, my_multi_sig, [sig1, sig2])
         
-        #pushtx(tx2)
+        push_transaction(tx2)
 
         json_object = {
             "tx": tx2
