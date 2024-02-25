@@ -41,7 +41,7 @@ if(len(sys.argv) > 0):
 
         tx2 =  apply_multisignatures (ctx, 0, my_multi_sig, [sig1, sig2])
         
-        push_transaction(tx2)
+        pushtx(tx2)
 
         json_object = {
             "tx": tx2
